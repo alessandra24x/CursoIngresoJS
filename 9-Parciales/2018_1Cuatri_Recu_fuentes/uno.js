@@ -7,14 +7,12 @@ function mostrar()
 	var pesoGato;
 	var sumaPeso;
 
-	perro
-
 	perro = prompt("Por favor ingresa el nombre de tu mascota");
 	gato = prompt("Por favor ingresa el nombre de tu mascota");
-	pesoPerro = parseInt(22);
-	pesoGato = parseInt(3);
+	pesoPerro = prompt(`Por favor ingrese el peso de ${perro}`);
+	pesoGato = prompt(`Por favor ingrese el peso de ${gato}`);
 
-	sumaPeso = pesoPerro + pesoGato;
+	sumaPeso = parseInt(pesoPerro) + parseInt(pesoGato);
 
 
 	alert(`tienes dos mascotas ${perro} y ${gato}, que pesan ${pesoPerro} y ${pesoGato} kilos,
