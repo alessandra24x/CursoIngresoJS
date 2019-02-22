@@ -1,22 +1,53 @@
 function mostrar()
 {
+var descuento;
+var aumento;
+var resultado;
+var suma;
+var numeroUno;
+var numeroDos;
+var numeroTres;
+var numeroCuatro;
+var mensaje;
+var numeroMaximo;
 
-	var cuenta;
-	var cantidadAmigos;
-	var propina;
-	var iva;
-	var neto;
-	var total;
-	var cantidadAPagarPorAmigo;
+	numeroUno = prompt("Por favor ingresa un numero");
+	numeroDos = prompt("Por favor ingresa Por favor ingresa un segundo numero");
+	numeroTres = prompt("Por favor ingresa un tercer numero");
+	numeroCuatro = prompt("Por favor ingresa un cuarto numero");
 
-	cuenta = parseInt(prompt("Ingresa el total de tu cuenta"));
-	cantidadAmigos = prompt("Ingresa la cantidad de amigos");
-	propina = cuenta * 0.1;
-	iva = cuenta * 0.21;
-	cantidadAPagarPorAmigo = cuenta / cantidadAmigos;
-	neto = cuenta + propina + iva;
-	total = neto / cantidadAmigos;
+	suma = parseInt(numeroUno) + parseInt(numeroDos) + parseInt(numeroTres) + parseInt(numeroCuatro);
 
-	alert(`el total a pagar por cada uno (sin iva ni propina) es ${cantidadAPagarPorAmigo}, el 10% de propina es
-		${propina} y el iva es ${iva}, por lo tanto el total es ${neto} y cada uno debe pagar ${total}`);
+	if(suma > 100) {
+		descuento = suma * 0.1;
+		resultado = suma - descuento;
+		mensaje = resultado;
+	} else {
+		if(suma > 50) {
+			descuento = suma * 0.05;
+			resultado = suma - descuento;
+			mensaje = resultado;
+		} else {
+			aumento = suma * 0.15;
+			resultado = suma + aumento;
+			mensaje = resultado;
+		}
+	}
+
+	if(numeroUno > numeroDos && numeroUno > numeroTres && numeroUno > numeroCuatro) {
+		numeroMaximo = numeroUno;
+	} else {
+		if(numeroDos > numeroTres && numeroDos > numeroCuatro) {
+			numeroMaximo = numeroDos;
+		} else {
+			if(numeroTres > numeroCuatro) {
+				numeroMaximo = numeroTres;
+			} else {
+				numeroMaximo = numeroCuatro;
+			}
+		}
+	}
+
+	alert(`Su total es ${mensaje}, el numero mayor ingresado es ${numeroMaximo}`);
 }
+
