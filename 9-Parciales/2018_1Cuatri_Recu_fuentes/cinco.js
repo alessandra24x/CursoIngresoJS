@@ -4,8 +4,7 @@ var precio;
 var mediosDePago;
 var descuento;
 var paquete;
-var neto;
-var descuentoPorPaquete;
+var total;
 
 precio = parseInt(prompt("Por favor ingresa el monto"));
 mediosDePago = prompt("Ingrese su medio de pago");
@@ -14,39 +13,37 @@ paquete = prompt("Por favor ingresa el paquete que prefieres");
 switch (mediosDePago) {
   case "Visa":
   case "MercadoPago":
-  	descuento = precio * 0.1;
-    total = precio - descuento;
+  	descuento = 0.1;
     break;
   case "Paypal":
   switch(paquete) {
   	case "todoIncluido":
-  	descuento = precio * 0.25;
-  	total = total - descuento;
+  	descuento = 0.25;
   	break;
   	default:
-  	descuento = precio * 0.15;
-  	total = precio - descuento;
+  	descuento = 0.15;
   	break;
     }
-
+		break;
   case "Efectivo":
   switch(paquete) {
-  	case "todoIncluido":
-  	descuento = precio * 0.35;
-  	total = precio - descuento;
   case "todoIncluido":
-  	descuentoPorPaquete = total * 0.15;
-  	total = total - descuentoPorPaquete;
+		descuento = 0.35;
+		break;
   case "soloDesayunos":
-  	descuentoPorPaquete = total * 0.1;
-  	total = total - descuentoPorPaquete;
-    break;
-} 0.35, 0.3, 0.2
-
+		descuento = 0.3;
+		break;
   default:
-  	descuento = precio * 0.05;
-  	total = precio - descuento;
+  	descuento = 0.2;
+    break;
 }
+		break;
+  default:
+		descuento = 0.05;
+		break;
+}
+descuento = precio * descuento;
+total = precio - descuento;
 alert(`Su total es ${total}, el paquete elegido es ${paquete}`);
 
 }
