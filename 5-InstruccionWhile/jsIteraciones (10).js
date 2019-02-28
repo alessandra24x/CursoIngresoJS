@@ -6,22 +6,18 @@
 function mostrar()
 {
 
-	var contador = 0;
 	var numero;
 	var respuesta;
 	var negativos = 0;
 	var positivos = 0;
-	var ceros = 0;
 	var contadorNegativo = 0;
 	var contadorPositivo = 0;
 	var contadorCero = 0;
 	var contadorPares = 0;
-	var acumuladorPositivos;
-	var acumuladorNegativos;
 	var promedioPositivos;
 	var promedioNegativos;
 	var DIFERENCIA;
-	//declarar contadores y variables 
+	//declarar contadores y variables
 
 	ceros = 0;
 	respuesta = "si";
@@ -29,7 +25,7 @@ function mostrar()
 	while(respuesta != "no")
 	{
 		numero = parseInt(prompt("Ingrese un numero"));
-		
+
 		if(numero < 0) {
 			contadorNegativo = contadorNegativo + 1;
 			negativos = negativos + numero;
