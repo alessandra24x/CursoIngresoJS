@@ -1,92 +1,94 @@
+/*Realizar el algoritmo que permita ingresar la marca de la marca de la gaseosa,la
+cantidad de litros (validar entre 1 litro, 2 litros y 3 litros), el precio el cual debe ser
+entre 30 y 100 y
+por document.write:
+a)La cantidad de precios pares.
+b)La marca y litros del más barato
+c)La cantidad de gaseosas que valen menos de 50.
+d)El promedio del precio de todas las gaseosa.
+f)El precio máximo y el mínimo de todas las gaseosa de menores de 3 litros.*/
+
 function mostrar() {
 
-	var marcaCelular;
-	var tamanoCelular;
+	var marcaGaseosa;
+	var cantidadLitros;
 	var precio;
-	var mayorPrecio;
-	var mayorPrecioMarca;
 	var respuesta;
+	var contadorPreciosPares;
 	var contador;
-	var precioAcumulado;
-	var contadorCelulares_2000;
-	var mayorPrecioTamano;
-	var menorPrecio;
-	var menorPrecioMarca;
-	var menorPrecioTamano;
-	var marcaCelular_1000;
-	var ultimoCelularLg;
-	var precioUltimoCelularLg;
+	var marcaMenorPrecio;
+	var cantidadLitrosMenor;
+	var contadorPrecioMenor_50;
+	var acumulador;
 	var bandera;
+	var precioMaximoMenor_3;
+	var precioMinimoMenor_3;
 
-	respuesta = "si";
+	contadorPreciosPares = 0;
+	contadorPrecioMenor_50 = 0;
 	contador = 0;
-	contadorCelulares_2000 = 0;
-	precioAcumulado = 0;
-	bandera = false;
+	acumulador = 0;
+	bandera = true;
+	respuesta = "ok";
 
-	while(respuesta == "si") {
-		marcaCelular = prompt("Ingrese la marca del celular");
-		tamanoCelular = parseInt(prompt("Ingrese el tamaño del celular"));
+	while(respuesta == "ok") {
+		marcaGaseosa = prompt("Ingrese la marca de la gaseosa");
+		cantidadLitros = parseInt(prompt("Ingrese la cantidad de litros"));
 
-		while(tamanoCelular < 0) {
-			tamanoCelular = prompt("error, el tamaño debe ser mayor a 0");
+		while(cantidadLitros < 1 || cantidadLitros > 3) {
+			cantidadLitros = parseInt(prompt("Error, la cantidad de litros debe estar entre 1 y 3"));
 		}
 
 		precio = parseInt(prompt("Ingrese el precio"));
 
-		while(precio < 0 || precio > 80000) {
-			precio = prompt("error, el precio debe ser menor a 80.000");
+		while(precio < 30 || precio > 100) {
+			precio = parseInt(prompt("Error, el precio debe estar entre 30 y 100"));
+		}
+
+		if(precio % 2 == 0) {
+			contadorPreciosPares++
 		}
 
 		if(contador == 0) {
-			mayorPrecio = precio;
-			mayorPrecioMarca = marcaCelular;
-			mayorPrecioTamano = tamanoCelular;
-			menorPrecio = precio;
-			menorPrecioMarca = marcaCelular;
-			menorPrecioTamano = tamanoCelular;
+			marcaMenorPrecio = marcaGaseosa;
+			cantidadLitrosMenor = cantidadLitros;
 		} else {
-			if(mayorPrecio < precio) {
-				mayorPrecio = precio;
-				mayorPrecioMarca = marcaCelular;
-				mayorPrecioTamano = tamanoCelular;
-			}
-			if(menorPrecio > precio) {
-				menorPrecio = precio;
-				menorPrecioMarca = marcaCelular;
-				menorPrecioTamano = tamanoCelular;
+			if(cantidadLitrosMenor > cantidadLitros) {
+				marcaMenorPrecio = marcaGaseosa;
+				cantidadLitrosMenor = cantidadLitros;
 			}
 		}
 
-		if(precio > 2000) {
-			contadorCelulares_2000++
+		if(precio < 50) {
+			contadorPrecioMenor_50++
 		}
 
-		if(precio == 1000 && bandera == false) {
-			marcaCelular_1000 = marcaCelular;
-			bandera = true;
+		if(cantidadLitros < 3 && bandera) {
+			precioMaximoMenor_3 = precio;
+			precioMinimoMenor_3 = precio;
+			bandera = false;
+		} else {
+			if(cantidadLitros < 3 && precioMaximoMenor_3 < precio) {
+				precioMaximoMenor_3 = precio;
+			}
+			if(cantidadLitros < 3 && precioMinimoMenor_3 > precio) {
+				precioMinimoMenor_3 = precio;
+			}
 		}
 
-		if(marcaCelular == "lg") {
-			ultimoCelularLg = marcaCelular;
-			precioUltimoCelularLg = precio;
-		}
+		acumulador += precio;
 
-
-		precioAcumulado += precio;
 		contador++
-
-		respuesta = prompt("Ingrese si para continuar");
+		respuesta = prompt("Ingrese ok para continuar");
 
 	}
 
-	promedio = precioAcumulado/contador
+	promedio = acumulador/contador
 
-	document.write("El promedio del precio de los celulares es: " + promedio + "</br>");
-	document.write("La cantidad de celulares que valen mas de 2000 es: " + contadorCelulares_2000 + "</br>");
-	document.write("Marca, precio y tamaño del celular mas caro es: " + mayorPrecioMarca + " " + mayorPrecio + " " + mayorPrecioTamano + "</br>");
-	document.write("Marca, precio y tamaño del celular mas barato es: " + menorPrecioMarca + " " + menorPrecio + " " + menorPrecioTamano + "</br>");
-	document.write("El primer celular que vale 1000 es: " + marcaCelular_1000 + "</br>");
-	document.write("El precio del ultimo celular lg es: " + precioUltimoCelularLg + "</br>");
-
+	document.write("La cantidad de precios pares es: " + contadorPreciosPares + "</br>");
+	document.write("Datos del mas barato. Marca: " + marcaMenorPrecio + " Cant de litros: " + cantidadLitrosMenor + "</br>");
+	document.write("La cantidad de gaseosas que valen menos de 50 es: " + contadorPrecioMenor_50 + "</br>");
+	document.write("El promedio del precio de todas las gaseosas es: " + promedio + "</br>");
+	document.write("El precio maximo de todas las gaseosas menores de 3 litros es: " + precioMaximoMenor_3 + "</br>");
+	document.write("El precio minimo de todas las gaseosas menores de 3 litros es: " + precioMinimoMenor_3 + "</br>");
 }
