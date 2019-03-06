@@ -36,7 +36,7 @@ function mostrar() {
 		superficie = parseInt(prompt("Ingresar superficie del territorio"));
 
 		while(superficie < 1 || superficie > 10000) {
-			superficie = prompt("error, la superficie debe estar entre 1 y 17.100.000");
+			superficie = prompt("error, la superficie debe estar entre 1 y 10000");
 		}
 
 		if(superficie % 2 == 1) {
